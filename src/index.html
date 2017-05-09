@@ -1,0 +1,157 @@
+<!doctype html>
+<html>
+  <head>
+    <title><%= json.project.title %></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <!-- Safari, you're the worst -->
+    <meta name='format-detection' content='telephone=no'>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <%= t.include("partials/_head.html") %>
+  </head>
+  <body>
+
+    <%= t.include("partials/_nav.html") %>
+
+    <%= t.include("partials/_ad.html", { type: "banner" }) %>
+
+    <header class="top">
+      <h1><img src="./assets/header.jpg" alt="Seattle Times Fall Arts Guide"></h1>
+
+      <p>
+        Use our fall arts guide to plan your season! This calendar includes critics' recommendations and editors' picks for autumn events — everything from concerts to comedy to books and ballet.
+    </header>
+
+    <main class="table-container">
+
+      <nav class="filters">
+        <div>
+          <h2 class="nav-header">Choose categories</h2>
+          <% var cats = [
+            { data: "books", label: "Books &amp; Authors" },
+            { data: "classical", label: "Classical Music &amp; Opera" },
+            { data: "pop", label: "Pop, Rock &amp; Jazz" },
+            { data: "dance", label: "Dance" },
+            { data: "comedy", label: "Comedy" },
+            { data: "theater", label: "Theater" },
+            { data: "art", label: "Visual Art" }
+          ] %>
+          <ul class="categories">
+            <% cats.forEach(function(cat) { %>
+            <li>
+              <input type="checkbox" data-category="<%= cat.data %>" id="<%= cat.data %>" checked="checked">
+              <label for="<%= cat.data %>"><%= cat.label %></label>
+            </li>
+            <% }) %>
+          </ul>
+        </div>
+        <div class="advanced">
+          <input type="text" placeholder="Search events" class="search">
+          <input type="checkbox" class="editors" id="editors">
+          <label for="editors">Show only editor's picks</label>
+        </div>
+        <a class="jump-to-today">Click here to scroll to today's events.</a>
+      </nav>
+
+      <table class="fall-arts">
+        <thead>
+          <tr>
+            <th class="category">
+            <th class="date">Date
+            <th class="event">Event
+            <th class="location">Location
+            <th class="description">Description
+        <tbody class="events">
+          <% var icons = {
+            books: "bookauthors",
+            classical: "classicalopera",
+            comedy: "comedy",
+            dance: "dance",
+            pop: "poprockjazz",
+            theater: "theater",
+            todo: "todolist",
+            art: "visualart"
+          } %>
+              <% json.guide.forEach(function(item) { %>
+          <tr
+            data-category="<%= item.className %>"
+            data-start="<%= item.start %>" data-end="<%= item.end %>"
+            <% if (item.pick) { %>
+            class="pick"
+            <% } %>
+          >
+
+            <td class="category">
+              <%
+              var thumbnail = icons[item.className];
+              if (item.pick) thumbnail += "_red";
+              %>
+              <img src="./assets/icons/<%= thumbnail %>.png"
+                alt="<%= item.category %>"
+                title="<%= item.category %>"
+              >
+            </td>
+            <td class="date">
+              <span class="start"><%= item.start %></span>
+              <% if (item.end) { %>
+              - <span class="end"><%= item.end %></span>
+              <% } %>
+              <% if (item.time) { %>
+              <div class="time">
+                <%= item.time %>
+              </div>
+              <% } %>
+            <td class="event">
+              <% if (item.website) { %>
+              <a href="<%= item.website %>">
+              <% } %>
+              <%= item.event %>
+              <% if (item.website) { %>
+              </a>
+              <% } %>
+            <td class="location"><%= item.location %>
+            <td class="description">
+              <% if (item.pick) { %>
+              <span class="editors-pick">&bigstar; Editor's pick</span>
+              <% } %>
+              <%= item.info %>
+              <% if (item.phone) { %>
+              <div class="phone">Call for info: <%= item.phone %></div>
+              <% } %>
+          <% }) %>
+        <tbody class="emptied">
+          <tr>
+            <td colspan="99">No results found</td>
+      </table>
+      <div class="credits">
+        Originally published: Sept. 14, 2016
+      </div>
+    </main>
+
+    <%= t.include("partials/_dontMiss.html", { data: [{
+      link: "http://www.seattletimes.com/entertainment/movies/from-snowden-to-sully-to-doctor-strange-15-fall-films/",
+      head: "From ‘Snowden’ to ‘Sully’ to ‘Doctor Strange’: 15 fall films",
+      image: "teasers/teaser_movies.jpg"
+    }, {
+      link: "http://www.seattletimes.com/entertainment/books/what-did-we-read-this-summer-check-out-the-libraries-most-requested-books/",
+      head: "What did we read this summer? Check out the libraries’ most-requested books",
+      image: "teasers/teaser_books.jpg"
+    }, {
+      link: "http://www.seattletimes.com/life/food-drink/save-the-dives-great-seattle-area-bars-to-celebrate-before-theyre-gone/",
+      head: "Save the dives: great Seattle-area bars to celebrate before they’re gone",
+      image: "teasers/teaser_dives.jpg"
+    }, {
+      link: "http://www.seattletimes.com/life/food-drink/6-seattle-spots-for-truly-great-pizza/",
+      head: "6 Seattle spots for truly great pizza",
+      image: "teasers/teaser_pizza.jpg"
+    }]}) %>
+
+    <%= t.include("partials/_navBottom.html") %>
+
+    <script src="app.js" async></script>
+    <% if (json.project.production) { %>
+    <%= !json.project.embedded ? t.include("partials/_foot.html") : "" %>
+    <%= t.include("partials/_workHere.html") %>
+    <% } %>
+  </body>
+</html>
