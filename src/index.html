@@ -28,14 +28,13 @@
         <div>
           <h2 class="nav-header">Choose categories</h2>
           <% var cats = [
-            { data: "books", label: "Books &amp; Authors" },
-            { data: "classical", label: "Classical Music &amp; Opera" },
-            { data: "pop", label: "Pop, Rock &amp; Jazz" },
-            { data: "dance", label: "Dance" },
-            { data: "comedy", label: "Comedy" },
-            { data: "theater", label: "Theater" },
-            { data: "art", label: "Visual Art" },
-            { data: "classTest", label: "test" }
+            { data: "arts", label: "Arts &amp; Exhibits" },
+            { data: "holiday", label: "Fourth of July" },
+            { data: "outdoor", label: "Outdoor Fun" },
+            { data: "aquatic", label: "Aquatic Activities" },
+            { data: "festivals", label: "Festivals & Parades" },
+            { data: "food", label: "Food & Drink" },
+            { data: "music", label: "Music" },
           ] %>
           <ul class="categories">
             <% cats.forEach(function(cat) { %>
@@ -130,17 +129,17 @@
     </main>
 
     <%= t.include("partials/_dontMiss.html", { data: [{
-      link: "http://www.seattletimes.com/entertainment/movies/from-snowden-to-sully-to-doctor-strange-15-fall-films/",
-      head: "From ‘Snowden’ to ‘Sully’ to ‘Doctor Strange’: 15 fall films",
-      image: "teasers/teaser_movies.jpg"
+      link: "http://www.seattletimes.com/life/travel/new-in-town-10-dos-and-donts-for-your-seattle-summer/",
+      head: "New in town? 10 do’s and don’ts for your Seattle summer",
+      image: "teasers/teaser_new.jpg"
     }, {
-      link: "http://www.seattletimes.com/entertainment/books/what-did-we-read-this-summer-check-out-the-libraries-most-requested-books/",
-      head: "What did we read this summer? Check out the libraries’ most-requested books",
-      image: "teasers/teaser_books.jpg"
+      link: "http://www.seattletimes.com/life/travel/my-seattle-summer-to-do-list-madeline-mckenzie/",
+      head: "5 things you can only do around Seattle in the summer",
+      image: "teasers/teaser_fivethings.jpg"
     }, {
-      link: "http://www.seattletimes.com/life/food-drink/save-the-dives-great-seattle-area-bars-to-celebrate-before-theyre-gone/",
-      head: "Save the dives: great Seattle-area bars to celebrate before they’re gone",
-      image: "teasers/teaser_dives.jpg"
+      link: "http://www.seattletimes.com/life/travel/my-seattle-summer-to-do-list-tan-vinh/",
+      head: "A Seattle summer drinking to-do list",
+      image: "teasers/teaser_drinks.jpg"
     }, {
       link: "http://www.seattletimes.com/life/food-drink/6-seattle-spots-for-truly-great-pizza/",
       head: "6 Seattle spots for truly great pizza",

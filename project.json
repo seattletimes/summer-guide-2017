@@ -2,14 +2,14 @@
   "s3": {
     "stage": {
       "bucket": "projects-staging.seattletimes.com",
-      "path": ""
+      "path": "eccentric-sorghum"
     },
     "live": {
       "bucket": "projects.seattletimes.com",
       "path": "2017/summer-guide"
     }
   },
-  "title": "Summer Guide 2016",
+  "title": "Summer Guide 2017",
   "description": "Use our summer guide to plan your season!",
   "url": "",
   "slug": "",
