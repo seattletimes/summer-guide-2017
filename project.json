@@ -2,16 +2,16 @@
   "s3": {
     "stage": {
       "bucket": "projects-staging.seattletimes.com",
-      "path": "aesthetic-pilchard"
+      "path": ""
     },
     "live": {
       "bucket": "projects.seattletimes.com",
-      "path": "2016/fall-arts-guide"
+      "path": "2017/summer-guide"
     }
   },
-  "title": "Fall Arts Guide 2016",
-  "description": "Use our fall arts guide to plan your season! This calendar includes critics' recommendations and editors' picks for autumn events — everything from concerts to comedy to books and ballet. ",
-  "url": "https://projects.seattletimes.com/2016/fall-arts-guide/",
+  "title": "Summer Guide 2016",
+  "description": "Use our summer guide to plan your season!",
+  "url": "",
   "slug": "",
   "tags": [],
   "image": "assets/social.jpg",

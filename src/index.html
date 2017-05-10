@@ -16,10 +16,10 @@
     <%= t.include("partials/_ad.html", { type: "banner" }) %>
 
     <header class="top">
-      <h1><img src="./assets/header.jpg" alt="Seattle Times Fall Arts Guide"></h1>
+      <h1><img src="./assets/header.jpg" alt="Seattle Times Summer Guide"></h1>
 
       <p>
-        Use our fall arts guide to plan your season! This calendar includes critics' recommendations and editors' picks for autumn events — everything from concerts to comedy to books and ballet.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.
     </header>
 
     <main class="table-container">
@@ -34,7 +34,8 @@
             { data: "dance", label: "Dance" },
             { data: "comedy", label: "Comedy" },
             { data: "theater", label: "Theater" },
-            { data: "art", label: "Visual Art" }
+            { data: "art", label: "Visual Art" },
+            { data: "classTest", label: "test" }
           ] %>
           <ul class="categories">
             <% cats.forEach(function(cat) { %>
@@ -45,15 +46,35 @@
             <% }) %>
           </ul>
         </div>
+
+      <!-- month filter -->
+
+        <div>
+          <h2 class="nav-header">Choose a month</h2>
+          <% var meses = [
+            { data: "may", label: "May" },
+            { data: "june", label: "June" },
+            { data: "july", label: "July" },
+            { data: "august", label: "August" },
+          ] %>
+          <ul class="meses">
+            <% meses.forEach(function(mes) { %>
+            <li>
+              <input type="checkbox" data-month="<%= mes.data %>" id="<%= mes.data %>" checked="checked">
+              <label for="<%= mes.data %>"><%= mes.label %></label>
+            </li>
+            <% }) %>
+          </ul>
+        </div>
+      <!-- end month filter -->
+
         <div class="advanced">
           <input type="text" placeholder="Search events" class="search">
           <input type="checkbox" class="editors" id="editors">
-          <label for="editors">Show only editor's picks</label>
         </div>
-        <a class="jump-to-today">Click here to scroll to today's events.</a>
       </nav>
 
-      <table class="fall-arts">
+      <table class="summer-events">
         <thead>
           <tr>
             <th class="category">
@@ -74,33 +95,16 @@
           } %>
               <% json.guide.forEach(function(item) { %>
           <tr
-            data-category="<%= item.className %>"
-            data-start="<%= item.start %>" data-end="<%= item.end %>"
-            <% if (item.pick) { %>
-            class="pick"
-            <% } %>
+            data-category="<%= item.className %>" 
           >
 
-            <td class="category">
-              <%
-              var thumbnail = icons[item.className];
-              if (item.pick) thumbnail += "_red";
-              %>
-              <img src="./assets/icons/<%= thumbnail %>.png"
+            <td class="category"> <!--UPDATE THIS WITH CORRECT PHOTO NAME" -->
+              <img src="./assets/icons/TEST.png" 
                 alt="<%= item.category %>"
                 title="<%= item.category %>"
               >
             </td>
-            <td class="date">
-              <span class="start"><%= item.start %></span>
-              <% if (item.end) { %>
-              - <span class="end"><%= item.end %></span>
-              <% } %>
-              <% if (item.time) { %>
-              <div class="time">
-                <%= item.time %>
-              </div>
-              <% } %>
+            <td class="date"><%= item.dates %>
             <td class="event">
               <% if (item.website) { %>
               <a href="<%= item.website %>">
@@ -111,9 +115,6 @@
               <% } %>
             <td class="location"><%= item.location %>
             <td class="description">
-              <% if (item.pick) { %>
-              <span class="editors-pick">&bigstar; Editor's pick</span>
-              <% } %>
               <%= item.info %>
               <% if (item.phone) { %>
               <div class="phone">Call for info: <%= item.phone %></div>
@@ -124,7 +125,7 @@
             <td colspan="99">No results found</td>
       </table>
       <div class="credits">
-        Originally published: Sept. 14, 2016
+        Originally published: May. 12, 2017
       </div>
     </main>
 
