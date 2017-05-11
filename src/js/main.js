@@ -55,7 +55,7 @@ var chainFilters = function() {
   var mesChecked = $(".meses input[type=checkbox]:checked", monthList).map(el => el.getAttribute("data-month"));
   var query = searchBox.value;
   var filters = [
-    // { filter: filterByCategory, value: checked },
+    { filter: filterByCategory, value: checked },
     { filter: filterByMonth, value: mesChecked },
     { filter: filterBySearch, value: query }
   ];
@@ -73,6 +73,7 @@ var applyFilters = debounce(function() {
       r.element.classList.add("hidden");
     }
   });
+  
   if (!final.length) {
     table.classList.add("empty");
   } else {
@@ -88,19 +89,4 @@ searchBox.addEventListener("keyup", applyFilters);
 
 edPicks.addEventListener("click", applyFilters);
 
-// applyFilters();
-
-
-//scroll to today's events
-// document.querySelector(".jump-to-today").addEventListener("click", function() {
-//   var today = new Date();
-//   today.setHours(0);
-//   today.setMinutes(0);
-//   today.setSeconds(0);
-//   var filtered = chainFilters();
-//   for (var i = 0; i < filtered.length; i++) {
-//     var row = filtered[i];
-//     if (row.end >= today) return scrollTo(row.element);
-//     if (row.start >= today) return scrollTo(row.element);
-//   }
-// });
+applyFilters();

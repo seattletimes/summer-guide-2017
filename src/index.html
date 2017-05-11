@@ -28,9 +28,9 @@
         <div>
           <h2 class="nav-header">Choose categories</h2>
           <% var cats = [
-            { data: "arts", label: "Arts &amp; Exhibits" },
+            { data: "arts", label: "Arts, Exhibits &amp; Expos" },
             { data: "holiday", label: "Fourth of July" },
-            { data: "outdoor", label: "Outdoor Fun" },
+            { data: "outdoors", label: "Outdoors" },
             { data: "aquatic", label: "Aquatic Activities" },
             { data: "festivals", label: "Festivals & Parades" },
             { data: "food", label: "Food & Drink" },
@@ -54,7 +54,8 @@
             { data: "may", label: "May" },
             { data: "june", label: "June" },
             { data: "july", label: "July" },
-            { data: "august", label: "August" },
+            { data: "aug", label: "August" },
+            { data: "sept", label: "September" },
           ] %>
           <ul class="meses">
             <% meses.forEach(function(mes) { %>
@@ -83,22 +84,26 @@
             <th class="description">Description
         <tbody class="events">
           <% var icons = {
-            books: "bookauthors",
-            classical: "classicalopera",
-            comedy: "comedy",
-            dance: "dance",
-            pop: "poprockjazz",
-            theater: "theater",
-            todo: "todolist",
-            art: "visualart"
+            arts: "arts-exhibits",
+            holiday: "fourth-of-july",
+            outdoors: "outdoors",
+            aquatic: "aquatic",
+            festivals: "festivals-parades",
+            food: "food-drink",
+            music: "music"
           } %>
-              <% json.guide.forEach(function(item) { %>
+          
+          <% json.guide.forEach(function(item) { %>
           <tr
             data-category="<%= item.className %>" 
           >
 
-            <td class="category"> <!--UPDATE THIS WITH CORRECT PHOTO NAME" -->
-              <img src="./assets/icons/TEST.png" 
+            <td class="category">
+              <%
+                var thumbnail = icons[item.className];
+              %>
+
+              <img src="./assets/icons/<%= thumbnail %>.jpg" 
                 alt="<%= item.category %>"
                 title="<%= item.category %>"
               >
@@ -141,9 +146,9 @@
       head: "A Seattle summer drinking to-do list",
       image: "teasers/teaser_drinks.jpg"
     }, {
-      link: "http://www.seattletimes.com/life/food-drink/6-seattle-spots-for-truly-great-pizza/",
-      head: "6 Seattle spots for truly great pizza",
-      image: "teasers/teaser_pizza.jpg"
+      link: "http://www.seattletimes.com/life/travel/your-guide-to-the-seattle-areas-summer-farmers-markets/",
+      head: "Your guide to the Seattle area’s summer farmers markets",
+      image: "teasers/teaser_markets.jpg"
     }]}) %>
 
     <%= t.include("partials/_navBottom.html") %>
