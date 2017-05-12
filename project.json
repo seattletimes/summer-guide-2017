@@ -10,12 +10,11 @@
     }
   },
   "title": "Summer Guide 2017",
-  "description": "Use our summer guide to plan your season!",
-  "url": "",
-  "slug": "",
-  "tags": [],
+  "description": "Seattle Summer Guide 2017: Use this interactive to find summer activities around Seattle, May through August 2017.",
+  "url": "https://projects.seattletimes.com/2017/summer-guide/",
   "image": "assets/social.jpg",
   "sheets": ["1Sxxm2XMG792jjI9aKjnl9jx7-6XcJ1DR3oVxloQIElQ"],
   "production": true,
-  "embedded": false
+  "embedded": false,
+  "standout": true
 }

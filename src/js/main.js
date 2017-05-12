@@ -21,11 +21,21 @@ var rows = $(".summer-events tbody.events tr").map(function(tr) {
   props.forEach(p => o[p] = tr.querySelector("." + p).innerHTML.trim().replace("&amp;", "&"));
   o.element = tr;
   o.category = tr.getAttribute("data-category");
+  o.start = tr.getAttribute("data-start");
+  o.end = tr.getAttribute("data-end");
   o.dates = tr.querySelector(".date").innerHTML;
   var [month] = o.dates.match(/thru|may|june|july|aug|sept/i) || [""];
   month = month.toLowerCase();
   o.month = month == "thru" ? "may" : month;
-  o.pick = tr.classList.contains("pick");
+
+  var mesesList = ["may", "june", "july", "aug", "sept"];
+  if (!o.start) {
+    o.months = [o.month];
+  } else {
+    var indexStart = mesesList.indexOf(o.start);
+    var indexEnd = mesesList.indexOf(o.end) + 1;
+    o.months = mesesList.slice(indexStart, indexEnd);
+  }
   return o;
 });
 
@@ -33,14 +43,13 @@ var catList = document.querySelector(".filters .categories");
 var monthList = document.querySelector(".filters .meses")
 var searchBox = document.querySelector(".filters .search");
 var table = document.querySelector(".summer-events");
-var edPicks = document.querySelector(".editors");
 
 var filterByCategory = function(cats, list) {
   return list.filter(r => cats.indexOf(r.category) > -1);
 };
 
 var filterByMonth = function(meses, list) {
-  return list.filter(r => meses.indexOf(r.month) > -1);
+  return list.filter(r => r.months.some(m => meses.indexOf(m) > -1));
 };
 
 var filterBySearch = function(q, list) {
@@ -53,6 +62,7 @@ var filterBySearch = function(q, list) {
 var chainFilters = function() {
   var checked = $(".categories input[type=checkbox]:checked", catList).map(el => el.getAttribute("data-category"));
   var mesChecked = $(".meses input[type=checkbox]:checked", monthList).map(el => el.getAttribute("data-month"));
+  if (!mesChecked.length) mesChecked = ["may", "june", "july", "aug", "sept"];
   var query = searchBox.value;
   var filters = [
     { filter: filterByCategory, value: checked },
@@ -73,7 +83,7 @@ var applyFilters = debounce(function() {
       r.element.classList.add("hidden");
     }
   });
-  
+
   if (!final.length) {
     table.classList.add("empty");
   } else {
@@ -87,6 +97,5 @@ monthList.addEventListener("click", applyFilters);
 
 searchBox.addEventListener("keyup", applyFilters);
 
-edPicks.addEventListener("click", applyFilters);
 
 applyFilters();

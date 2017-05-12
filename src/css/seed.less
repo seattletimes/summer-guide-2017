@@ -99,8 +99,7 @@ main.table-container {
       font-size: 14px;
 
       &::before {
-        content: "✗";
-        margin-right: 6px;
+        content: "";
       }
     }
 
@@ -109,7 +108,8 @@ main.table-container {
       color: @df-dark-gray;
 
       &::before {
-        content: "✓"
+        content: "✓";
+        margin-right: 6px;
       }
     }
   }
@@ -147,9 +147,18 @@ main.table-container {
   td {
     @media @not-mobile {
       border-bottom: 1px solid @df-light-gray;
+      padding: 8px 16px 8px 0;
     }
     vertical-align: top;
-    padding: 8px 16px 8px 0;
+    padding: 0px 16px 0px 0;
+
+    &.description {
+      padding-top: 8px;
+    }
+
+    &.event {
+      font-weight: bold;
+    }
   }
 
   .hidden {
@@ -184,8 +193,8 @@ main.table-container {
 
     tr {
       border-top: 1px solid @df-light-gray;
-      margin-top: 10px;
-      padding-top: 10px;
+      margin-top: 18px;
+      padding-top: 18px;
     }
 
     .date .start, .date .end {

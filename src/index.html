@@ -60,7 +60,7 @@
           <ul class="meses">
             <% meses.forEach(function(mes) { %>
             <li>
-              <input type="checkbox" data-month="<%= mes.data %>" id="<%= mes.data %>" checked="checked">
+              <input type="checkbox" data-month="<%= mes.data %>" id="<%= mes.data %>">
               <label for="<%= mes.data %>"><%= mes.label %></label>
             </li>
             <% }) %>
@@ -95,7 +95,9 @@
           
           <% json.guide.forEach(function(item) { %>
           <tr
-            data-category="<%= item.className %>" 
+            data-category="<%= item.className %>"
+            data-start="<%= item.start %>"
+            data-end="<%= item.end %>"
           >
 
             <td class="category">
@@ -130,6 +132,7 @@
       </table>
       <div class="credits">
         Originally published: May. 12, 2017
+        <div>Illustrations by Gabriel Campanario / The Seattle Times</div>
       </div>
     </main>
 
